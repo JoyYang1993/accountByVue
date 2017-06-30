@@ -29,31 +29,7 @@
 export default{
   data() {
     return {
-      tableData: [{
-        label:'支出',
-        classify: '吃饭',
-        remark: '望湘园',
-        date: '2017年6月10日',
-        money:170
-      }, {
-        label:'收入',
-        classify: '工资',
-        remark: '北京加维',
-        date: '2017年6月10日',
-        money:4000
-      }, {
-        label:'支出',
-        classify: '服饰',
-        remark: 'VeryModa连衣裙',
-        date: '2017年6月15日',
-        money:399
-      }, {
-        label:'支出',
-        classify: '房租',
-        remark: '6月份房租',
-        date: '2017年6月15日',
-        money:1900
-      }]
+      tableData: []
     }
   },
   methods: {
@@ -63,23 +39,21 @@ export default{
     editRow(index,rows) {
       console.log(index)
       console.log(rows)
+    },
+    // 初始化页面数据
+    getTableData () {
+      let that = this
+      that.$ajax.get("/tapi/recordShow.json")
+        .then( function (response) {
+          console.log(response)
+          that.tableData = response.data? response.data.record: []
+        }).catch( function (error) {
+          console.log(error)
+      })
     }
   },
   mounted:function () {
-    /*axios.get('../../json/recordShow.json').then(function (response) {
-     console.log(response)
-     }).catch(function (error) {
-     console.log(error)
-     })*/
-    this.$ajax.get({
-      url:"../json/recordShow.json",
-      method:"get",
-      dataType:"json"
-    }).then(function (response) {
-      console.log(response)
-    }).catch(function (error) {
-      console.log(error)
-    })
+    this.getTableData()
   }
 }
 
