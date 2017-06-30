@@ -1,6 +1,6 @@
 <template>
   <div class="recordShow">
-    <el-table :data="tableData" style="width: 100%">
+    <el-table :data="tableData" style="width: 100%" v-loading.body="tableLoading">
       <el-table-column prop="label"></el-table-column>
       <el-table-column prop="classify" label="分类"></el-table-column>
       <el-table-column prop="remark" label="备注"></el-table-column>
@@ -29,7 +29,8 @@
 export default{
   data() {
     return {
-      tableData: []
+      tableData: [],
+      tableLoading: true
     }
   },
   methods: {
@@ -47,13 +48,19 @@ export default{
         .then( function (response) {
           console.log(response)
           that.tableData = response.data? response.data.record: []
+          // 取消加载
+           that.tableLoading = false
         }).catch( function (error) {
           console.log(error)
       })
     }
   },
   mounted:function () {
-    this.getTableData()
+    // 增加一个延时效果
+    setTimeout(() => {
+      this.getTableData()
+    }, 1000);
+    // this.getTableData()
   }
 }
 
