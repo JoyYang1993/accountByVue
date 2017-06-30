@@ -66,7 +66,16 @@ export default{
     }
   },
   mounted:function () {
-    axios.get('../../json/recordShow.json').then(function (response) {
+    /*axios.get('../../json/recordShow.json').then(function (response) {
+     console.log(response)
+     }).catch(function (error) {
+     console.log(error)
+     })*/
+    this.$ajax.get({
+      url:"../json/recordShow.json",
+      method:"get",
+      dataType:"json"
+    }).then(function (response) {
       console.log(response)
     }).catch(function (error) {
       console.log(error)

@@ -8,7 +8,7 @@ import record from '@/components/record'
 import recordShow from '@/components/recordShow'
 
 Vue.use(Router)
-Vue.use(axios)
+Vue.prototype.$ajax = axios
 
 export default new Router({
   routes: [
