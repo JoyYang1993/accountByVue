@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import axios from 'axios'
-import index from '@/components/index'
-import login from '@/components/login'
-import register from '@/components/register'
-import record from '@/components/record'
-import recordShow from '@/components/recordShow'
+import index from '../views/index'
+import login from '../views/login'
+import register from '../views/register'
+import record from '../views/record'
+import recordShow from '../views/recordShow'
 
-Vue.use(Router)
-Vue.prototype.$ajax = axios
+Vue.use(Router);
+Vue.prototype.$ajax = axios;
 
 export default new Router({
   routes: [

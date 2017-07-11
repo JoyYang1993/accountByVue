@@ -11,15 +11,25 @@
     <el-button type="warning">
       <a href="#/register">注册</a>
     </el-button>
+
+
+    <hr>
+    <el-ul :type="xx"></el-ul>
+
   </div>
 </template>
 
 <script>
+
+  import ElUl from '../components/list'
+
 export default {
   name: 'index',
+  components: {ElUl},
   data () {
     return {
-      msg:"Welcome TO yourself Account"
+      msg:"Welcome TO yourself Account",
+      xx: [1, 2, 5, 3]
     }
   },
   methods: {
